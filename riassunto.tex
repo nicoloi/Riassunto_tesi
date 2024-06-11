@@ -1,0 +1,55 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage[a4paper]{geometry}
+\usepackage{amssymb,amsmath,amsthm}
+\newcommand{\tto} {\leftrightarrow}
+
+\title{IMPLEMENTAZIONE IN JAVA DEL METODO DI RISOLUZIONE PER LA LOGICA CLASSICA, ED ESTENSIONE A LOGICHE MODALI}
+\author{Nicolò Iaccarino - 903870}
+\date{Giugno 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Ente presso cui è stato svolto il lavoro di stage}
+Lo stage è stato svolto internamente all'Università degli Studi di Milano, sotto la supervisione del prof. Camillo Fiorentini.
+
+\section{Contesto iniziale}
+Il contesto è quello della logica matematica, in particolare la logica classica e le logiche modali non-normali. La situazione da affrontare è quella di automatizzare il calcolo della soddisfacibilità di formule logiche, utile in vari ambiti dell'informatica.
+
+\section{Obiettivi del lavoro}
+L'obiettivo del lavoro è quello di Implementare in Java il metodo di risoluzione per la logica classica ed estenderlo a logiche modali non-normali. Inoltre, l'obiettivo è anche quello di implementare le formule e di convertirle in \emph{Forma normale congiuntiva} (CNF) tramite il processo di \textbf{clausificazione}; in questo modo è possibile operare il metodo di risoluzione su di esse.
+
+\section{Descrizione lavoro svolto}
+\subsection*{Metodo di risoluzione per la logica classica}
+inizialmente, Sono state scritte le classi per rappresentare la CNF, ossia le classi per i letterali, per le clausole e per gli insiemi di clausole. Successivamente, è stato scritto il metodo di risoluzione in una classe apposita. Questo metodo prende in input un insieme di clausole e restituisce \texttt{true}, se è soddisfacibile, \texttt{false} se è insoddisfacibile.
+
+Sono state scritte poi le classi che descrivono le formule generiche (atomiche e composte). Fondamentale è il metodo per effettuare la \emph{clausificazione}, che viene realizzata applicando le regole di inferenza per convertire una formula in un insieme di clausole, seguendo un approccio ricorsivo. Infine è stato utilizzato un parser per effettuare il parsing delle formule.
+
+L'utilizzo pratico del metodo di risoluzione che è stato implementato, è quello di verificare la validità di una formula $F$ letta da \emph{Standard Input}.
+
+\subsection*{Metodo di risoluzione per le logiche modali}
+Per quanto riguarda le logiche modali, sono state scritte anche in questo caso le classi per la CNF, tenendo conto che questa volta i letterali possono essere \emph{proposizionali} o \emph{modali}, e le clausole possono essere \emph{locali} o \emph{globali}.
+
+\`E stato implementato il metodo di risoluzione che applica le regole $RES_E$, ossia le regole per la logica modale non-normale minimale \textbf{E} (presentate nell'articolo \cite{Articolo_resolution}); queste regole sono \textbf{LRES, GRES, G2L, LERES, GERES}.
+
+Per quanto riguarda le formule, è stato seguito lo stesso approccio per la logica classica, tenendo conto del connettivo modale \emph{box} ($\Box$). La clausificazione di una formula $\phi$ viene effettuata con le funzioni $\eta$ e \textbf{R}; queste funzioni vengono spiegate in \cite{Articolo_resolution}.
+Tutto il resto (parsing, ecc\dots) è stato implementato come nella logica classica.
+
+\section{Tecnologie coinvolte}
+La principale tecnologia utilizzata è il linguaggio di programmazione \textbf{Java}, fondamentale per scrivere l'algoritmo che implementa il metodo di risoluzione e anche gli oggetti necessari per il suo funzionamento. Inoltre è stato utilizzato il parser \textbf{ANTLR4} per effettuare il parsing delle formule logiche a partire dalla loro rappresentazione testuale. Infine, è stato utilizzato il framework \textbf{Junit} per poter realizzare il testing del metodo di risoluzione.
+
+\section{Competenze e risultati raggiunti}
+Alla fine del lavoro siamo riusciti a verificare la validità di tautologie notevoli, come il principio del terzo escluso, il modus ponens, e le leggi di De Morgan.
+
+Per quanto riguarda le logiche modali, siamo riusciti a dimostrare la validità della regola di congruenza \textbf{RE}: da $\phi \leftrightarrow \psi$ si inferisce $\Box\phi \leftrightarrow \Box\psi$, dove $\phi$ e $\psi$ sono formule.
+
+% \newpage
+\bibliographystyle{amsalpha}
+\bibliography{riassunto}
+
+\end{document}
